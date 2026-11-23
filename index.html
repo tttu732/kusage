@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>草ゲー｜地下闘技場の草パズルバトル</title>
+<meta name="description" content="借金500万円。地下闘技場で葉物野菜をつないで一発逆転する、草パズルバトル。">
+<meta property="og:title" content="草ゲー｜地下闘技場の草パズルバトル">
+<meta property="og:description" content="借金500万円。地下闘技場で葉物野菜をつないで一発逆転する、草パズルバトル。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://tttu732.github.io/kusage/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://tttu732.github.io/kusage/favicon.png">
+<link rel="apple-touch-icon" href="https://tttu732.github.io/kusage/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 地下闘技場の夜：黒紫の地にマゼンタ（敵・危険）と金（自分の力）。紙の督促状が差し色 */
+  --bg:#140E16; --panel:#1E1622; --line:#33263A; --text:#FFF4E8; --sub:#B8A3B6;
+  --magenta:#FF1A8C; --gold:#FFC83D; --paper:#FFF1E4; --ink:#1E1420; --stamp:#E0284F;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --num:"Anton","Impact",sans-serif;
+  --hand:"Yusei Magic","Hiragino Maru Gothic ProN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.8;font-size:16px}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--num);letter-spacing:.28em;color:var(--magenta);font-size:14px}
+section{padding:88px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(30px,5vw,46px);margin:6px 0 18px}
+.lead{color:var(--sub);max-width:34em}
+
+/* ヘッダー */
+.top{position:sticky;top:0;z-index:5;background:rgba(20,14,22,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:var(--display);font-size:22px}
+.brand img{width:36px;height:36px;border-radius:9px}
+.top nav{margin-left:auto;display:flex;gap:20px;font-size:14px}
+.top nav a{color:var(--sub);text-decoration:none}
+.top nav a:hover{color:var(--text)}
+@media (max-width:620px){.top nav{display:none}}
+
+/* ヒーロー */
+.hero{position:relative;overflow:hidden;padding:56px 0 64px;border-top:0;
+  background:radial-gradient(120% 80% at 75% 10%,#FF1A8C 0%,#3A1232 45%,var(--bg) 80%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(72px,14vw,150px);letter-spacing:.02em;text-shadow:0 6px 0 #000}
+.hero .en{font-family:var(--num);letter-spacing:.6em;color:var(--magenta);font-size:18px;margin:4px 0 22px}
+.hero .catch{font-family:var(--display);font-size:clamp(22px,3.4vw,32px);line-height:1.5}
+.hero .catch em{font-style:normal;color:var(--gold)}
+.hero p.sub{color:var(--sub);margin:16px 0 26px}
+.hero .art{position:relative;border:6px solid var(--paper);border-radius:6px;transform:rotate(2deg);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.hero .art::after{content:"督促";position:absolute;right:-18px;bottom:-22px;font-family:var(--display);color:var(--stamp);
+  border:4px solid var(--stamp);border-radius:50%;width:96px;height:96px;display:grid;place-items:center;font-size:26px;
+  background:rgba(255,241,228,.92);transform:rotate(-14deg)}
+.hero .wrap>*{min-width:0}
+@media (max-width:760px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.hero .art{max-width:min(420px,88%);margin:12px auto 0}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-family:var(--display);
+  font-size:16px;text-decoration:none;border:2px solid var(--gold);color:var(--ink);background:var(--gold)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn small{font-family:var(--body);font-size:12px;opacity:.8}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding:0;list-style:none}
+.facts li{font-size:13px;border:1px solid rgba(255,244,232,.35);border-radius:4px;padding:2px 10px;color:var(--text)}
+
+/* ストーリー：紙の督促状 */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.notice{background:var(--paper);color:var(--ink);padding:34px 30px;border-radius:4px;transform:rotate(-1.2deg);
+  box-shadow:0 20px 40px rgba(0,0,0,.5);position:relative}
+.notice .head{font-family:var(--display);color:#8A7F70;font-size:14px;letter-spacing:.1em}
+.notice .amount{font-family:var(--num);color:var(--stamp);font-size:clamp(48px,8vw,72px);line-height:1.2;letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;padding-top:4px}
+.notice .bar{height:8px;background:#DDD4C3;margin:8px 0 14px}.notice .bar i{display:block;height:100%;width:100%;background:var(--stamp)}
+.notice p{margin:0;font-size:14px}
+.notice .stamp{position:absolute;top:24px;right:24px;width:84px;height:84px;border-radius:50%;border:3px solid var(--stamp);color:var(--stamp);
+  font-family:var(--display);display:grid;place-items:center;transform:rotate(12deg);font-size:20px}
+.storytext p{margin:0 0 1em;font-size:17px}
+.storytext .q{font-family:var(--hand);color:var(--gold);font-size:20px}
+@media (max-width:760px){.story{grid-template-columns:minmax(0,1fr)}}
+
+/* 遊び方 */
+.howto{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px}
+.step{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.step img{border-radius:10px;border:2px solid var(--line);aspect-ratio:3/4;object-fit:cover;object-position:center 45%;width:100%;height:auto}
+.step .no{font-family:var(--num);color:var(--magenta);font-size:28px;line-height:1}
+.step h3{font-size:22px;margin:6px 0 8px}
+.step p{margin:0;color:var(--sub);font-size:15px}
+.step b{color:var(--gold);font-weight:700}
+@media (max-width:860px){.howto{grid-template-columns:1fr}}
+@media (max-width:420px){.step{grid-template-columns:110px 1fr}}
+
+/* 葉物野菜 */
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:32px}
+.set{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.set h3{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.set h3 i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center}
+.trio figure{margin:0}
+.trio .ball{aspect-ratio:1;border-radius:50%;background:color-mix(in srgb,var(--c) 25%,transparent);padding:6%}
+.trio .ball img{width:100%;height:auto}
+.trio figcaption{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.4}
+.quiz{margin-top:26px;font-family:var(--hand);font-size:20px;color:var(--gold)}
+
+/* 対戦相手 */
+.foes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.foe{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.foe img{aspect-ratio:1;object-fit:cover;width:100%;height:auto}
+.foe .cap{padding:12px 14px 16px}
+.foe .role{font-size:12px;color:var(--sub);letter-spacing:.1em}
+.foe .name{font-family:var(--display);font-size:24px}
+.foe .line{font-family:var(--hand);color:var(--magenta);font-size:15px;line-height:1.5;margin-top:4px}
+.foe.boss img{filter:brightness(.12) saturate(0)}
+.foe.boss .name{color:var(--magenta)}
+@media (max-width:760px){.foes{grid-template-columns:repeat(2,1fr)}}
+
+/* スクリーンショット */
+.shots{display:flex;gap:16px;overflow-x:auto;padding:30px 4px 10px;scroll-snap-type:x mandatory}
+.shots img{width:240px;height:auto;flex:none;border-radius:22px;border:4px solid var(--paper);scroll-snap-align:start}
+
+/* 配信 */
+.dl{text-align:center;background:radial-gradient(80% 120% at 50% 0%,#3A1232,var(--bg))}
+.dl .icon{width:120px;height:120px;border-radius:26px;margin:0 auto 18px;box-shadow:0 10px 30px rgba(255,26,140,.35)}
+.dl .cta{justify-content:center;margin-top:20px}
+
+/* フッター */
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);font-size:13px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:14px}
+footer .links a{color:var(--text)}
+footer p{margin:4px 0}
+
+/* 規約ページ */
+.doc{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+.doc h1{font-size:34px;margin-bottom:24px}
+.doc .body{white-space:pre-wrap;color:var(--text);font-size:15px;line-height:1.9}
+.doc .back{display:inline-block;margin-bottom:24px;color:var(--sub);text-decoration:none}
+.faq dt{font-family:var(--display);margin-top:22px}
+.faq dd{margin:6px 0 0;color:var(--sub)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://tttu732.github.io/kusage/index.html"><img src="https://tttu732.github.io/kusage/icon.png" alt="">草ゲー</a>
+  <nav aria-label="ページ内"><a href="https://tttu732.github.io/kusage/index.html#story">ストーリー</a><a href="https://tttu732.github.io/kusage/index.html#howto">遊び方</a><a href="https://tttu732.github.io/kusage/index.html#greens">葉物野菜</a><a href="https://tttu732.github.io/kusage/index.html#foes">対戦相手</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>草ゲー</h1>
+    <div class="en">KUSA GAME</div>
+    <p class="catch">借金<em>500万円</em>。<br>返す方法はただひとつ、<br>地下闘技場で勝つこと。</p>
+    <p class="sub">同じ葉物野菜を指でなぞってつなげ。コンボとFEVERで、取り立て屋をぶちのめす草パズルバトル。</p>
+    <div class="cta"><span class="btn">App Store で近日配信</span><a class="btn ghost" href="#howto">遊び方を見る</a></div>
+    <ul class="facts"><li>iPhone</li><li>基本無料（広告あり）</li><li>アプリ内課金なし</li><li>アカウント登録なし</li></ul>
+  </div>
+  <img class="art" src="https://tttu732.github.io/kusage/genji.jpg" alt="主人公の農家・草野ゲンジ" width="640" height="640">
+</div></section>
+
+<section id="story"><div class="wrap story">
+  <div class="notice" aria-label="督促状">
+    <div class="stamp">督促</div>
+    <div class="head">督促状 ── 草野ゲンジ 殿</div>
+    <div style="margin-top:10px;font-weight:700">ご返済残高</div>
+    <div class="amount">¥5,000,000</div>
+    <div class="bar"><i></i></div>
+    <p>利息 ＋¥100,000／分　返済期日：いますぐ</p>
+  </div>
+  <div class="storytext">
+    <div class="eyebrow">STORY</div>
+    <h2>雑草魂で、成り上がれ。</h2>
+    <p>草野ゲンジ、42歳。農家。長雨で葉物野菜は全滅し、残ったのは闇金への借金だけだった。</p>
+    <p>ある日、河川敷で見つけた珍しい雑草を茹でて食べると、目の前がぐにゃりと歪む。目を開けると、そこは地下の闘技場だった。</p>
+    <p class="q">「ようこそ、草ゲーへ。勝てば借金をチャラにしてやろう」</p>
+  </div>
+</div></section>
+
+<section id="howto"><div class="wrap">
+  <div class="eyebrow">HOW TO PLAY</div>
+  <h2>なぞって、つないで、ぶちのめせ。</h2>
+  <p class="lead">操作は指でなぞるだけ。最初の対戦でチュートリアルがあるので、すぐに遊べます。</p>
+  <div class="howto">
+    <div class="step"><img src="https://tttu732.github.io/kusage/shot2.jpg" alt="草をなぞってつないでいるバトル画面" width="540" height="1173"><div>
+      <div class="no">01</div><h3>同じ草を3つ以上つなぐ</h3>
+      <p>同じ葉物野菜を<b>3つ以上</b>なぞると攻撃。たくさんつなぐほどダメージが大きい。敵の<b>弱点の草</b>なら1.5倍。</p></div></div>
+    <div class="step"><img src="https://tttu732.github.io/kusage/shot3.jpg" alt="FEVER中にコンボが続いている画面" width="540" height="1173"><div>
+      <div class="no">02</div><h3>コンボとFEVER</h3>
+      <p>手を止めずに消し続けると<b>コンボ</b>。ゲージが満タンになると<b>FEVER</b>で8秒間ダメージ2倍。</p></div></div>
+    <div class="step"><img src="https://tttu732.github.io/kusage/genji_face.jpg" alt="スキルを使う草野ゲンジ" width="400" height="400"><div>
+      <div class="no">03</div><h3>スキル「雑草魂」</h3>
+      <p>草を28個消すとゲンジが光る。タップすると一番多い草を根こそぎ消し、6秒間<b>どの草でもつなげ放題</b>。</p></div></div>
+    <div class="step"><img src="https://tttu732.github.io/kusage/shot4.jpg" alt="ステージ選択と借金の督促状" width="540" height="1173"><div>
+      <div class="no">04</div><h3>勝って、借金を返す</h3>
+      <p>勝てば賞金で借金を返済。スコアは経験値になり、<b>草レベル</b>が上がるとゲンジの攻撃力とHPが上がる。</p></div></div>
+  </div>
+</div></section>
+
+<section id="greens"><div class="wrap">
+  <div class="eyebrow">30 LEAFY GREENS</div>
+  <h2>見分けにくい、葉物野菜30種。</h2>
+  <p class="lead">盤面に並ぶのは、よく似た3つ組。チンゲン菜と小松菜とほうれん草、一瞬で見分けられますか。草レベルを上げると新しいセットが解放されます。</p>
+  <div class="sets"><div class="set" style="--c:#5DA9FF"><h3><i></i>青菜</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/chingensai.png" alt="チンゲン菜" width="160" height="160"></div><figcaption>チンゲン菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/komatsuna.png" alt="小松菜" width="160" height="160"></div><figcaption>小松菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/horenso.png" alt="ほうれん草" width="160" height="160"></div><figcaption>ほうれん草</figcaption></figure></div></div><div class="set" style="--c:#FFE45C"><h3><i></i>玉もの</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/retasu.png" alt="レタス" width="160" height="160"></div><figcaption>レタス</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/kyabetsu.png" alt="キャベツ" width="160" height="160"></div><figcaption>キャベツ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/hakusai.png" alt="白菜" width="160" height="160"></div><figcaption>白菜</figcaption></figure></div></div><div class="set" style="--c:#4FE0C8"><h3><i></i>しそ</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/ooba.png" alt="大葉" width="160" height="160"></div><figcaption>大葉</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/egoma.png" alt="エゴマの葉" width="160" height="160"></div><figcaption>エゴマの葉</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/bajiru.png" alt="バジル" width="160" height="160"></div><figcaption>バジル</figcaption></figure></div></div><div class="set" style="--c:#C38BFF"><h3><i></i>菜っ葉</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/daikonba.png" alt="大根の葉" width="160" height="160"></div><figcaption>大根の葉</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/kabuba.png" alt="かぶの葉" width="160" height="160"></div><figcaption>かぶの葉</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/rukkora.png" alt="ルッコラ" width="160" height="160"></div><figcaption>ルッコラ</figcaption></figure></div></div><div class="set" style="--c:#FF8A65"><h3><i></i>香草</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/pakuchi.png" alt="パクチー" width="160" height="160"></div><figcaption>パクチー</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/itapase.png" alt="イタリアンパセリ" width="160" height="160"></div><figcaption>イタリアンパセリ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/mitsuba.png" alt="三つ葉" width="160" height="160"></div><figcaption>三つ葉</figcaption></figure></div></div><div class="set" style="--c:#8CF06B"><h3><i></i>ちぢれ</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/mizuna.png" alt="水菜" width="160" height="160"></div><figcaption>水菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/wasabina.png" alt="わさび菜" width="160" height="160"></div><figcaption>わさび菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/karashina.png" alt="からし菜" width="160" height="160"></div><figcaption>からし菜</figcaption></figure></div></div><div class="set" style="--c:#FFB3D1"><h3><i></i>リーフ</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/sanchu.png" alt="サンチュ" width="160" height="160"></div><figcaption>サンチュ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/greenleaf.png" alt="グリーンリーフ" width="160" height="160"></div><figcaption>グリーンリーフ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/romein.png" alt="ロメインレタス" width="160" height="160"></div><figcaption>ロメインレタス</figcaption></figure></div></div><div class="set" style="--c:#9FE3FF"><h3><i></i>細葉</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/nira.png" alt="ニラ" width="160" height="160"></div><figcaption>ニラ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/konegi.png" alt="小ねぎ" width="160" height="160"></div><figcaption>小ねぎ</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/asatsuki.png" alt="あさつき" width="160" height="160"></div><figcaption>あさつき</figcaption></figure></div></div><div class="set" style="--c:#FFD08A"><h3><i></i>春の菜</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/nanohana.png" alt="菜の花" width="160" height="160"></div><figcaption>菜の花</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/noraboe.png" alt="のらぼう菜" width="160" height="160"></div><figcaption>のらぼう菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/kakina.png" alt="かき菜" width="160" height="160"></div><figcaption>かき菜</figcaption></figure></div></div><div class="set" style="--c:#E0A8FF"><h3><i></i>夏の菜</h3><div class="trio"><figure><div class="ball"><img src="https://tttu732.github.io/kusage/kushinsai.png" alt="空芯菜" width="160" height="160"></div><figcaption>空芯菜</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/tsurumura.png" alt="つるむらさき" width="160" height="160"></div><figcaption>つるむらさき</figcaption></figure><figure><div class="ball"><img src="https://tttu732.github.io/kusage/moroheiya.png" alt="モロヘイヤ" width="160" height="160"></div><figcaption>モロヘイヤ</figcaption></figure></div></div></div>
+  <p class="quiz">― パクチーとイタリアンパセリ、どっちがどっち？</p>
+</div></section>
+
+<section id="foes"><div class="wrap">
+  <div class="eyebrow">RIVALS</div>
+  <h2>草ゲーの対戦相手。</h2>
+  <p class="lead">河川敷のチンピラから闇金の番犬まで。全員ぶちのめした先に、草ゲーの胴元が待っている。</p>
+  <div class="foes"><article class="foe"><img src="https://tttu732.github.io/kusage/enemy1.jpg" alt="モブ山" width="640" height="640"><div class="cap"><div class="role">STAGE 01　河川敷のチンピラ</div><div class="name">モブ山</div><div class="line">「雑草なんか食ってるヤツに負けるかよ！」</div></div></article><article class="foe"><img src="https://tttu732.github.io/kusage/enemy2.jpg" alt="ザキ" width="640" height="640"><div class="cap"><div class="role">STAGE 02　除草剤散布人</div><div class="name">ザキ</div><div class="line">「シュコー…全部枯らしてやる…」</div></div></article><article class="foe"><img src="https://tttu732.github.io/kusage/enemy3.jpg" alt="カネダ" width="640" height="640"><div class="cap"><div class="role">STAGE 03　取り立て屋</div><div class="name">カネダ</div><div class="line">「利息はトイチだぜ、ゲンジさんよォ」</div></div></article><article class="foe"><img src="https://tttu732.github.io/kusage/enemy4.jpg" alt="鉄男" width="640" height="640"><div class="cap"><div class="role">STAGE 04　芝刈り機の男</div><div class="name">鉄男</div><div class="line">「ブルルン！刈り尽くしてやらァ！」</div></div></article><article class="foe"><img src="https://tttu732.github.io/kusage/enemy5.jpg" alt="ドーベル" width="640" height="640"><div class="cap"><div class="role">STAGE 05　闇金の番犬</div><div class="name">ドーベル</div><div class="line">「ガルルル…社長の邪魔はさせねえ」</div></div></article><article class="foe boss"><img src="https://tttu732.github.io/kusage/enemy6.jpg" alt="正体不明のボス" width="640" height="640"><div class="cap"><div class="role">BOSS　草ゲーの胴元</div><div class="name">？？？</div><div class="line">「借金ごと刈り取ってやろう」</div></div></article></div>
+</div></section>
+
+<section id="shots"><div class="wrap">
+  <div class="eyebrow">SCREENSHOTS</div>
+  <h2>ゲーム画面</h2>
+  <div class="shots" tabindex="0" aria-label="ゲーム画面（横にスクロール）">
+    <img src="https://tttu732.github.io/kusage/shot2.jpg" alt="ゲーム画面 2" width="540" height="1173"><img src="https://tttu732.github.io/kusage/shot3.jpg" alt="ゲーム画面 3" width="540" height="1173"><img src="https://tttu732.github.io/kusage/shot4.jpg" alt="ゲーム画面 4" width="540" height="1173"><img src="https://tttu732.github.io/kusage/shot5.jpg" alt="ゲーム画面 5" width="540" height="1173"><img src="https://tttu732.github.io/kusage/shot1.jpg" alt="ゲーム画面 1" width="540" height="1173">
+  </div>
+</div></section>
+
+<section class="dl"><div class="wrap">
+  <img class="icon" src="https://tttu732.github.io/kusage/icon.png" alt="草ゲーのアプリアイコン" width="256" height="256">
+  <h2>草ゲー</h2>
+  <p class="lead" style="margin:0 auto">iPhone 向けに近日配信。基本無料で遊べます。</p>
+  <div class="cta"><span class="btn">App Store で近日配信</span><a class="btn ghost" href="https://tttu732.github.io/kusage/support.html">お問い合わせ</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="links"><a href="https://tttu732.github.io/kusage/privacy.html">プライバシーポリシー</a><a href="https://tttu732.github.io/kusage/terms.html">利用規約</a><a href="https://tttu732.github.io/kusage/support.html">サポート・お問い合わせ</a></div>
+  <p>BGM音源：FluidR3_GM（Frank Wen ほか）CC BY 3.0</p>
+  <p>本作はフィクションです。登場する人物・団体・借金や利息はすべて架空のもので、現実の金銭とは関係ありません。</p>
+  <p>© 2026 （運営者名）</p>
+</div></footer>
+</body>
+</html>

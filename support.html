@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>サポート・お問い合わせ｜草ゲー</title>
+<meta name="description" content="草ゲーのサポート・お問い合わせ">
+<meta property="og:title" content="サポート・お問い合わせ｜草ゲー">
+<meta property="og:description" content="草ゲーのサポート・お問い合わせ">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://tttu732.github.io/kusage/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://tttu732.github.io/kusage/favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 地下闘技場の夜：黒紫の地にマゼンタ（敵・危険）と金（自分の力）。紙の督促状が差し色 */
+  --bg:#140E16; --panel:#1E1622; --line:#33263A; --text:#FFF4E8; --sub:#B8A3B6;
+  --magenta:#FF1A8C; --gold:#FFC83D; --paper:#FFF1E4; --ink:#1E1420; --stamp:#E0284F;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --num:"Anton","Impact",sans-serif;
+  --hand:"Yusei Magic","Hiragino Maru Gothic ProN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.8;font-size:16px}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--num);letter-spacing:.28em;color:var(--magenta);font-size:14px}
+section{padding:88px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(30px,5vw,46px);margin:6px 0 18px}
+.lead{color:var(--sub);max-width:34em}
+
+/* ヘッダー */
+.top{position:sticky;top:0;z-index:5;background:rgba(20,14,22,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:var(--display);font-size:22px}
+.brand img{width:36px;height:36px;border-radius:9px}
+.top nav{margin-left:auto;display:flex;gap:20px;font-size:14px}
+.top nav a{color:var(--sub);text-decoration:none}
+.top nav a:hover{color:var(--text)}
+@media (max-width:620px){.top nav{display:none}}
+
+/* ヒーロー */
+.hero{position:relative;overflow:hidden;padding:56px 0 64px;border-top:0;
+  background:radial-gradient(120% 80% at 75% 10%,#FF1A8C 0%,#3A1232 45%,var(--bg) 80%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(72px,14vw,150px);letter-spacing:.02em;text-shadow:0 6px 0 #000}
+.hero .en{font-family:var(--num);letter-spacing:.6em;color:var(--magenta);font-size:18px;margin:4px 0 22px}
+.hero .catch{font-family:var(--display);font-size:clamp(22px,3.4vw,32px);line-height:1.5}
+.hero .catch em{font-style:normal;color:var(--gold)}
+.hero p.sub{color:var(--sub);margin:16px 0 26px}
+.hero .art{position:relative;border:6px solid var(--paper);border-radius:6px;transform:rotate(2deg);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.hero .art::after{content:"督促";position:absolute;right:-18px;bottom:-22px;font-family:var(--display);color:var(--stamp);
+  border:4px solid var(--stamp);border-radius:50%;width:96px;height:96px;display:grid;place-items:center;font-size:26px;
+  background:rgba(255,241,228,.92);transform:rotate(-14deg)}
+.hero .wrap>*{min-width:0}
+@media (max-width:760px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.hero .art{max-width:min(420px,88%);margin:12px auto 0}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-family:var(--display);
+  font-size:16px;text-decoration:none;border:2px solid var(--gold);color:var(--ink);background:var(--gold)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn small{font-family:var(--body);font-size:12px;opacity:.8}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding:0;list-style:none}
+.facts li{font-size:13px;border:1px solid rgba(255,244,232,.35);border-radius:4px;padding:2px 10px;color:var(--text)}
+
+/* ストーリー：紙の督促状 */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.notice{background:var(--paper);color:var(--ink);padding:34px 30px;border-radius:4px;transform:rotate(-1.2deg);
+  box-shadow:0 20px 40px rgba(0,0,0,.5);position:relative}
+.notice .head{font-family:var(--display);color:#8A7F70;font-size:14px;letter-spacing:.1em}
+.notice .amount{font-family:var(--num);color:var(--stamp);font-size:clamp(48px,8vw,72px);line-height:1.2;letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;padding-top:4px}
+.notice .bar{height:8px;background:#DDD4C3;margin:8px 0 14px}.notice .bar i{display:block;height:100%;width:100%;background:var(--stamp)}
+.notice p{margin:0;font-size:14px}
+.notice .stamp{position:absolute;top:24px;right:24px;width:84px;height:84px;border-radius:50%;border:3px solid var(--stamp);color:var(--stamp);
+  font-family:var(--display);display:grid;place-items:center;transform:rotate(12deg);font-size:20px}
+.storytext p{margin:0 0 1em;font-size:17px}
+.storytext .q{font-family:var(--hand);color:var(--gold);font-size:20px}
+@media (max-width:760px){.story{grid-template-columns:minmax(0,1fr)}}
+
+/* 遊び方 */
+.howto{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px}
+.step{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.step img{border-radius:10px;border:2px solid var(--line);aspect-ratio:3/4;object-fit:cover;object-position:center 45%;width:100%;height:auto}
+.step .no{font-family:var(--num);color:var(--magenta);font-size:28px;line-height:1}
+.step h3{font-size:22px;margin:6px 0 8px}
+.step p{margin:0;color:var(--sub);font-size:15px}
+.step b{color:var(--gold);font-weight:700}
+@media (max-width:860px){.howto{grid-template-columns:1fr}}
+@media (max-width:420px){.step{grid-template-columns:110px 1fr}}
+
+/* 葉物野菜 */
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:32px}
+.set{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.set h3{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.set h3 i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center}
+.trio figure{margin:0}
+.trio .ball{aspect-ratio:1;border-radius:50%;background:color-mix(in srgb,var(--c) 25%,transparent);padding:6%}
+.trio .ball img{width:100%;height:auto}
+.trio figcaption{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.4}
+.quiz{margin-top:26px;font-family:var(--hand);font-size:20px;color:var(--gold)}
+
+/* 対戦相手 */
+.foes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.foe{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.foe img{aspect-ratio:1;object-fit:cover;width:100%;height:auto}
+.foe .cap{padding:12px 14px 16px}
+.foe .role{font-size:12px;color:var(--sub);letter-spacing:.1em}
+.foe .name{font-family:var(--display);font-size:24px}
+.foe .line{font-family:var(--hand);color:var(--magenta);font-size:15px;line-height:1.5;margin-top:4px}
+.foe.boss img{filter:brightness(.12) saturate(0)}
+.foe.boss .name{color:var(--magenta)}
+@media (max-width:760px){.foes{grid-template-columns:repeat(2,1fr)}}
+
+/* スクリーンショット */
+.shots{display:flex;gap:16px;overflow-x:auto;padding:30px 4px 10px;scroll-snap-type:x mandatory}
+.shots img{width:240px;height:auto;flex:none;border-radius:22px;border:4px solid var(--paper);scroll-snap-align:start}
+
+/* 配信 */
+.dl{text-align:center;background:radial-gradient(80% 120% at 50% 0%,#3A1232,var(--bg))}
+.dl .icon{width:120px;height:120px;border-radius:26px;margin:0 auto 18px;box-shadow:0 10px 30px rgba(255,26,140,.35)}
+.dl .cta{justify-content:center;margin-top:20px}
+
+/* フッター */
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--sub);font-size:13px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:14px}
+footer .links a{color:var(--text)}
+footer p{margin:4px 0}
+
+/* 規約ページ */
+.doc{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+.doc h1{font-size:34px;margin-bottom:24px}
+.doc .body{white-space:pre-wrap;color:var(--text);font-size:15px;line-height:1.9}
+.doc .back{display:inline-block;margin-bottom:24px;color:var(--sub);text-decoration:none}
+.faq dt{font-family:var(--display);margin-top:22px}
+.faq dd{margin:6px 0 0;color:var(--sub)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://tttu732.github.io/kusage/index.html"><img src="https://tttu732.github.io/kusage/icon.png" alt="">草ゲー</a>
+  <nav aria-label="ページ内"><a href="https://tttu732.github.io/kusage/index.html#story">ストーリー</a><a href="https://tttu732.github.io/kusage/index.html#howto">遊び方</a><a href="https://tttu732.github.io/kusage/index.html#greens">葉物野菜</a><a href="https://tttu732.github.io/kusage/index.html#foes">対戦相手</a></nav>
+</div></header>
+
+<main class="doc">
+  <a class="back" href="https://tttu732.github.io/kusage/index.html">← 草ゲー トップへ</a>
+  <h1>サポート・お問い合わせ</h1>
+  <p>不具合やご意見は、下記のメールアドレスまでお送りください。お使いの機種、iOSのバージョン、起きたことをできるだけ詳しく書いていただけると助かります。</p>
+  <p style="font-family:var(--display);font-size:18px">swipaholic.app@gmail.com</p>
+  <h2 style="font-size:24px;margin-top:40px">よくある質問</h2>
+  <dl class="faq">
+    <dt>音が出ません</dt><dd>タイトル画面右上の「サウンドOFF」になっていないか確かめてください。消音モードでも音は鳴ります。</dd>
+    <dt>機種変更でデータを引き継げますか</dt><dd>進行状況は端末の中にだけ保存されるため、別の端末へは引き継げません。アプリを削除するとデータも消えます。</dd>
+    <dt>広告が表示されません</dt><dd>通信状況によって広告を用意できないことがあります。その場合は広告なしで、そのまま借りる・解放することができます。</dd>
+    <dt>借金はお金がかかりますか</dt><dd>いいえ。借金・利息・返済はすべてゲーム内の数字です。現実のお金を払ったり受け取ったりすることはありません。アプリ内課金もありません。</dd>
+    <dt>チュートリアルをもう一度見たい</dt><dd>チュートリアルは最初のモブ山戦で一度だけ表示されます。遊び方はステージ選択画面右上の「遊び方 ?」からいつでも見られます。</dd>
+  </dl>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="https://tttu732.github.io/kusage/privacy.html">プライバシーポリシー</a><a href="https://tttu732.github.io/kusage/terms.html">利用規約</a><a href="https://tttu732.github.io/kusage/support.html">サポート・お問い合わせ</a></div>
+  <p>BGM音源：FluidR3_GM（Frank Wen ほか）CC BY 3.0</p>
+  <p>本作はフィクションです。登場する人物・団体・借金や利息はすべて架空のもので、現実の金銭とは関係ありません。</p>
+  <p>© 2026 草ゲー</p>
+</div></footer>
+</body>
+</html>
